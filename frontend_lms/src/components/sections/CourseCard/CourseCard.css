@@ -1,0 +1,104 @@
+.CourseCardContainer{
+    width: 80%;
+    height: auto;
+    /* background-color: red; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 250px)); /* responsive কলাম */
+    gap: 20px;
+
+
+    /* overflow-x: auto; */
+}
+
+.CourseCardContainer .CourseCard{
+    /* width: 300px; */
+    aspect-ratio: 6/8;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 1px 1px 5px 2px rgba(203, 203, 255, 0.651);
+    transition: 0.3s transform;
+}
+
+
+
+.CourseCardContainer .CourseCard:hover{
+    transform: translateY(-5px);
+}
+.CourseCardContainer .CourseCard .CourseImg{
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+.CourseCardContainer .CourseCard .CourseImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.CourseCardContainer .CourseCard .CourseTitle{
+    padding: 10px;
+    font-size: 14px;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.CourseCardContainer .CourseCard .CourseDesc{
+    background-color: #2e0018;
+    width: 100%;
+    min-height: 130px;
+    aspect-ratio: 4/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    padding-top: 20px;
+
+    color: #ffffff;
+    border-radius: 20px 20px 0px 0px;
+}
+.CourseCardContainer .CourseCard .CourseDesc .CourseInstructor{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 12px;
+}
+.CourseCardContainer .CourseCard .CourseDesc .sameInsDiv{
+    display: flex;
+    justify-content: space-between;
+}
+.CourseCardContainer .CourseCard .CourseDesc .CourseDetails a{
+    color: white;
+    padding: 5px 15px;
+    background-color: #db009a;
+}
+.CourseCardContainer .CourseCard .CourseDesc .CourseDetails .price{
+    font-size: 20px;
+}
+
+
+
+
+
+@media (max-width: 700px){
+    .CourseCardContainer{
+        width: 95%;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 0.8fr));
+    }
+
+    .CourseCardContainer .CourseCard .CourseDesc{
+        
+    }
+    .CourseCardContainer .CourseCard .CourseDesc .sameInsDiv{
+        /* font-size: 10px; */
+    }
+
+}
