@@ -1,69 +1,45 @@
-
-
-
 import React from 'react';
 import "./CourseCard.css";
-import img1 from "../../../../public/images/THUMB12.jpg";
-import img2 from "../../../../public/images/thumb14.jpg";
-import img3 from "../../../../public/images/thumb16.jpg";
+
+import { API } from '../../../../Utils/APi_Dummy';
+import { useApiContext } from '../../../../Utils/ApiContext';
 
 
-
-const courseData = [
-  {
-    id: 1,
-    image: img1,
-    title: "Complete HTML CSS Course for Beginners in Bangla with Examples and Projects",
-    instructor: "Muhammad Abir",
-    certificate: "Yes",
-    price: "1000",
-    detailsLink: "/course/html-css",
-  },
-  {
-    id: 2,
-    image: img2,
-    title: "Modern JavaScript Mastery with Projects",
-    instructor: "Tanjim Khan",
-    certificate: "Yes",
-    price: "1200",
-    detailsLink: "/course/javascript",
-  },
-  {
-    id: 3,
-    image: img3,
-    title: "React JS Full Course with Tailwind in Bangla",
-    instructor: "Rifat Hossain",
-    certificate: "No",
-    price: "0",
-    detailsLink: "/course/react-js",
-  },
-  {
-    id: 3,
-    image: img3,
-    title: "React JS Full Course with Tailwind in Bangla",
-    instructor: "Rifat Hossain",
-    certificate: "No",
-    price: "0",
-    detailsLink: "/course/react-js",
-  },
-  {
-    id: 3,
-    image: img3,
-    title: "React JS Full Course with Tailwind in Bangla",
-    instructor: "Rifat Hossain",
-    certificate: "No",
-    price: "0",
-    detailsLink: "/course/react-js",
-  },
-];
 
 const CourseCard = () => {
+
+  const {courseData, ApprovedCourseData} = useApiContext();
+
+//   courseData = {
+//   _id: "",
+//   title: "",
+//   description: "",
+//   category: "",
+//   level: "",
+//   price: "",
+//   thumbnail: "",
+//   isApproved: "",
+//   lectures: [],
+//   createdAt: "",
+//   __v: ""
+// };
+
+
+
+console.log(ApprovedCourseData);
+
+  
   return (
     <div className='CourseCardContainer'>
-      {courseData.map(course => (
-        <div className="CourseCard" key={course.id}>
+
+      {ApprovedCourseData.length > 0 ?
+      
+    <h1>"No course Active"</h1>
+    :  
+    ApprovedCourseData.map((course, i) => (
+        <div className="CourseCard" key={i}>
           <div className="CourseImg">
-            <img src={course.image} alt={course.title} />
+            <img src={course.thumbnail} alt={course.title} />
           </div>
 
           <p className="CourseTitle">{course.title}</p>
@@ -71,7 +47,7 @@ const CourseCard = () => {
           <div className="CourseDesc">
             <div className="CourseInstructor">
               <p className="instructorName sameInsDiv">
-                <span>{course.instructor}</span>
+                 <span>{course?.instructor?.name || "no"}</span>
                 <span>Instructor</span>
               </p>
               <p className="Certification sameInsDiv">
@@ -81,12 +57,14 @@ const CourseCard = () => {
             </div>
 
             <div className="CourseDetails sameInsDiv">
-              <a href={course.detailsLink}>Details</a>
+              <a href={`/course/selling/${course._id}`} >Details</a>
               <p className="price">{course.price > 0? `${course.price}৳` : "Free"}</p>
             </div>
           </div>
         </div>
-      ))}
+      ))
+    
+    }
     </div>
   );
 }

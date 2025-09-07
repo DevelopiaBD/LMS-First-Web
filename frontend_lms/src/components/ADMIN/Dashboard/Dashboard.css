@@ -1,0 +1,154 @@
+.DashboardMainDiv{
+    width: 100%;
+    max-width: 1500px;
+    height: auto;
+
+}
+
+.TTtypeHead{
+    color: black;
+}
+
+.DashboardMainDiv .shortDetailsDiv{
+    height: auto;
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* responsive কলাম */
+
+}
+
+.DashboardMainDiv .shortDetailsDiv .shortDetails{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* width: 300px; */
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+
+.DashboardMainDiv .DashboardStartDIv{
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    gap: 20px;
+}
+
+.DashboardMainDiv .Dashboard{
+    /* height: calc(100vh - 100px); */
+    /* background-color: red; */
+    border-radius: 10px;
+    height: auto;
+    /* overflow: hidden; */
+}
+        .DashboardMainDiv .DashboardPart1{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            /* background-color: rgb(206, 255, 244); */
+        }
+        .DashboardMainDiv .DashboardPart2{
+            width: 30%;
+            min-height: 300px;
+            background-color: rgb(253, 255, 200);
+        }
+
+
+.DashboardMainDiv .dash1divs{
+    width: 100%;
+    min-height: 100px;
+    /* background-color: red; */
+    
+}
+    .DashboardMainDiv .dash1divs{
+        width: 100%;
+        min-height: 100px;
+        height: auto;
+        /* background-color: red; */
+        margin-bottom: 20px;
+        
+    }
+
+
+
+.DashboardMainDiv .dash1divs.dash1_1{
+    border-radius: 10px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: start;
+    gap: 20px;
+    height: auto;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); */
+}
+
+
+
+
+
+.DashboardMainDiv .dash1divs.dash1_1 .notificationDiv{
+    min-height: 150px;
+    width: 22%;
+    aspect-ratio: 2/1;
+    min-width: 120px;
+    background-color: rgba(240, 245, 255, 0.568);
+    box-shadow: 1px 1px 1px 1px rgb(255, 255, 255);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
+
+.DashboardMainDiv .dash1divs.dash1_1 .notificationDiv .NotifyP{
+    font-size: 30px;
+}
+
+
+
+
+.DashboardMainDiv .dash1divs.dash1_2{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    margin-top: 50px;
+}
+.DashboardMainDiv .dash1divs.dash1_2 .instructorcourseTT{
+    color: rgb(72, 72, 72);
+}
+
+
+
+
+
+
+@media (max-width: 1000px){
+    .DashboardMainDiv .DashboardStartDIv{
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+    }
+    .DashboardMainDiv .DashboardPart1{
+        width: 100%;
+        height: auto;
+    }
+    .DashboardMainDiv .DashboardPart2{
+        width: 100%;
+        background-color: rgb(253, 255, 200);
+    }
+}
+
+
+
+@media (max-width: 600px) {
+  
+}

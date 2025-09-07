@@ -1,0 +1,168 @@
+/* General container for the slider component */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 40px auto;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: #f5f5f5;
+}
+
+/* Wrapper for the sliding content */
+.slider-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Inner content block that holds all the slides */
+.slide-content {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+/* Individual slide item with image and text overlay */
+.slide-item {
+    min-width: 100%; /* Each slide takes up the full width of the wrapper */
+    height: 600px; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #f0f0f0; /* Solid background */
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Image styling */
+.slide-item img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/4;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Text overlay on images */
+.text-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    color: #333;
+    max-width: 250px;
+}
+
+.text-overlay h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.text-overlay p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.highlight {
+    font-weight: 700;
+    color: #007bff;
+}
+
+/* Navigation Arrows */
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.slider-controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px; /* Adjust vertical alignment of arrow glyphs */
+}
+
+.slider-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots Navigation */
+.slider-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: white;
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slider-container {
+        margin: 20px auto;
+        padding: 0;
+    }
+
+    .slide-item {
+        height: 400px;
+    }
+
+    .text-overlay {
+        font-size: 0.8em;
+        left: 10px;
+        right: 10px;
+    }
+
+    .text-overlay h3 {
+        font-size: 1em;
+    }
+
+    .slider-controls button {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2em;
+    }
+}

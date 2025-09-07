@@ -12,7 +12,6 @@
 .newsletter-container h2 {
   font-size: 2.8rem;
   margin-bottom: 12px;
-  font-weight: 700;
 }
 
 .newsletter-container p {
@@ -43,11 +42,11 @@
   border: none;
   padding: 14px 32px;
   border-radius: 8px;
-  font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
   flex: 0 0 auto;
 }
+
 
 .subscribe-btn:hover {
   background-color: #fecaca;
@@ -55,7 +54,6 @@
 
 .thankyou-msg {
   font-size: 1.3rem;
-  font-weight: 600;
   margin-top: 20px;
   color: #d1d5db;
 }

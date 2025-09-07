@@ -4,6 +4,8 @@
   background-color: #f8fafc;
   padding: 80px 20px;
   text-align: center;
+
+  width: 100%;
 }
 
 .features-container {
@@ -43,7 +45,7 @@
 }
 
 .feature-card p {
-  color: #6b7280;
+  color: #ff1265;
   font-size: 1rem;
   line-height: 1.6;
 }

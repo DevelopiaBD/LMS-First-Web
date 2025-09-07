@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./Navbar.css";
+import { useApiContext } from "../../../../Utils/ApiContext";
 
 const Navbar = () => {
+
+  const {user, LogOutUser} = useApiContext()
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -22,9 +25,20 @@ const Navbar = () => {
           <a href="/courses" className="nav-item">Courses</a>
           <a href="/about" className="nav-item">About Us</a>
           <a href="/contact" className="nav-item">Contact</a>
+          <a href="/course/create" className="nav-item">Create</a>
+          {
+          !!user?
+          <>
+          <a onClick={()=>{LogOutUser()}} className="nav-item btn-signup">Logout</a>
+          <a href="/dashboard" className="nav-item btn-login">Dashboard</a>
+          </>
+          :
+          <>
           <a href="/login" className="nav-item btn-login">Login</a>
-          <a href="/signup" className="nav-item btn-signup">Sign Up</a>
-        </div>
+          <a href="/registration" className="nav-item btn-signup">Register</a>
+          </>
+          }
+          </div>
       </div>
     </nav>
   );

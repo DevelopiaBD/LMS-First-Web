@@ -20,6 +20,9 @@ module.exports = mongoose.model('User', userSchema);
 // -------------------------------
 // ✅ 2. Course Model
 // -------------------------------
+
+
+
 const courseSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String },
@@ -32,6 +35,7 @@ const courseSchema = new mongoose.Schema({
   price: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
+
 
 module.exports = mongoose.model('Course', courseSchema);
 
@@ -48,6 +52,8 @@ const lectureSchema = new mongoose.Schema({
   order: { type: Number },
   createdAt: { type: Date, default: Date.now }
 });
+
+
 
 module.exports = mongoose.model('Lecture', lectureSchema);
 
@@ -161,3 +167,48 @@ const notificationSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Notification', notificationSchema);
+
+
+
+import express from "express";
+import { upload, getSignedVideoUrl } from "../utils/cloudinaryUpload.js";
+import Lecture from "../models/Lecture.js";
+import auth from "../middlewares/auth.js";
+
+const router = express.Router();
+
+// Upload a lecture video
+router.post("/upload", auth, upload.single("video"), async (req, res) => {
+  try {
+    const { title, courseId } = req.body;
+
+    const lecture = await Lecture.create({
+      title,
+      videoPublicId: req.file.filename || req.file.public_id, // public_id from Cloudinary
+      course: courseId
+    });
+
+    res.json({
+      message: "Video uploaded successfully",
+      lecture
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Upload failed", error: err.message });
+  }
+});
+
+// Get signed video URL for playback
+router.get("/:lectureId/video", auth, async (req, res) => {
+  try {
+    const lecture = await Lecture.findById(req.params.lectureId);
+    if (!lecture) return res.status(404).json({ message: "Lecture not found" });
+
+    const signedUrl = getSignedVideoUrl(lecture.videoPublicId);
+    res.json({ videoUrl: signedUrl });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to get video", error: err.message });
+  }
+});
+
+export default router;
+

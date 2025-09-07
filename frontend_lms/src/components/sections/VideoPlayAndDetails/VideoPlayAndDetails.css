@@ -1,0 +1,457 @@
+.courseVideoMainDiv{
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+
+}
+
+.toggleCoursePlaylist{
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 10vw;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 601;
+    transition: 0.3s background;
+    animation: playlistBtn 10s infinite linear;
+}
+
+
+.toggleCoursePlaylist.active{
+    left: 270px;
+    bottom: auto;
+    top: 100px;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+
+@keyframes playlistBtn {
+    0%{
+        background: rgb(255, 0, 76);
+    }
+    
+    50%{
+        background: rgb(29, 29, 29);
+    }
+     100%{
+        background: rgb(255, 0, 76);
+    }
+}
+
+
+.courseVideoMainDiv .courseVideoAndPricing{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
+
+
+.courseVideoMainDiv .courseVideoAndPricing .coursePriceInstruc{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+}
+
+.courseVideoMainDiv .courseVideoAndPricing .courseTitle{
+    font-size: 30px;
+}
+
+
+.courseVideoMainDiv .courseVideoAndPricing .coursePriceInstruc .courseDetails{
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    flex-direction: column;
+    font-size: 13px;
+    color: gray;
+    text-transform: uppercase;
+    
+}
+.courseVideoMainDiv .courseVideoAndPricing .coursePriceInstruc .prices{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+    
+}
+.courseVideoAndPricing .coursePriceInstruc .prices .oldPrice{
+    font-size: 13px;
+    text-decoration: line-through;
+}
+.courseVideoAndPricing .coursePriceInstruc .prices .sellPrice{
+    font-size: 25px;
+}
+
+.courseVideoMainDiv .courseVideoAndPricing .coursePriceInstruc .startCourseButton{
+    background-color: rgb(255, 0, 76);
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+.courseVideoAndPricing .VideoSrc{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    border-radius: 20px;
+    border: 5px solid rgb(26, 26, 26);
+}
+
+
+
+
+
+
+.courseVideoMainDiv .videoPlayListsMainDiv{
+    width: 40%;
+    max-width: 450px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.527);
+    padding: 10px;
+    min-height: 100%;
+    box-shadow: 1px 1px 3px 1px rgb(133, 133, 133);
+}
+
+.courseVideoMainDiv .videoPlayListsMainDiv .playlistsOfCourse{
+    min-height: 200px;
+    max-height: 500px;
+    margin-top: 20px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.courseVideoMainDiv .videoPlayListsMainDiv .playlistsOfCourse::-webkit-scrollbar{
+    width: 5px;
+}
+.courseVideoMainDiv .videoPlayListsMainDiv .playlistsOfCourse::-webkit-scrollbar-thumb{
+    background-color: rgb(36, 36, 36);
+    border-radius: 30px;
+}
+.playlistsOfCourse .playlistDiv{
+    height: 80px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid red;
+    margin-bottom: 5px;
+    border-radius: 30px;
+}
+
+
+
+.playlistsOfCourse .playlistDiv .nameAndTic{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.playlistsOfCourse .playlistDiv .nameAndTic .ticDiv{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 140);
+}
+
+
+
+
+.playlistsOfCourse .playlistDiv .nameAndTic img{
+    height: 80%;
+    width: 80%;
+    object-fit: contain;
+    filter: invert();
+    
+}
+
+.playlistsOfCourse .playlistDiv .nameAndTic .descDiv .classesDesc{
+    font-size: 12px;
+    color: rgb(44, 44, 44);
+    text-overflow: ellipsis;
+    max-width: 200px;
+    width: auto;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+
+
+.playlistsOfCourse .playlistDiv .lockIndicates{
+    height: 100%;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.playlistsOfCourse .playlistDiv .lockIndicates .indicatesImgs{
+    height: 13px;
+    width: 13px;
+    display: inline-block;
+}
+.playlistsOfCourse .playlistDiv .recentVideoIndictor{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 1px solid rgb(255, 0, 85);
+    border: 1px solid rgb(255, 0, 85);
+}
+
+
+
+
+
+.playlistsOfCourse .playlistDiv.active{
+    color: rgb(255, 255, 255);
+    transition: 0.5s linear ;
+    background-color: rgb(0, 21, 53);
+
+}
+
+
+.playlistsOfCourse .playlistDiv.active .nameAndTic .ticDiv{
+    background-color: black;
+    transition: 0.3s background-color;
+}
+
+
+.playlistsOfCourse .playlistDiv.active .nameAndTic .descDiv .classesDesc{
+    color: rgb(200, 222, 255);
+}    
+
+
+
+.playlistsOfCourse .playlistDiv.active .lockIndicates .indicatesImgs{
+    height: 13px;
+    width: 13px;
+    display: inline-block;
+    filter: invert();
+}
+.playlistsOfCourse .playlistDiv.active .recentVideoIndictor{
+    border: 1px solid rgb(255, 255, 255);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1100px){
+    .courseVideoMainDiv{
+        justify-content: center;
+    }
+
+    .toggleCoursePlaylist{
+        display: block;
+        
+    }
+  
+
+    .courseVideoMainDiv .courseVideoAndPricing{
+        width: 100%;
+    }
+
+
+    .courseVideoMainDiv .courseVideoAndPricing .courseTitle{
+        font-size: 20px;
+    }
+
+    .courseVideoMainDiv .videoPlayListsMainDiv{
+        position: fixed;
+        top: 0;
+        width: 370px;
+        padding-left: 30px;
+        left: -120%;
+        max-height: 100%;
+        overflow-y: auto;
+        padding-top: 70px;
+        z-index: 600;
+        backdrop-filter: blur(10px);
+        transition: 0.3s ease-in-out;
+        background-color: rgb(255, 255, 255);
+    }
+    
+    .courseVideoMainDiv .videoPlayListsMainDiv.activeToggle{
+        left: 0;
+    }
+    .courseVideoMainDiv .videoPlayListsMainDiv .playlistsOfCourse{
+        max-height: none;
+    }
+}
+
+
+
+@media (max-width: 575px){
+    .courseVideoMainDiv .VideoSrc{
+        
+    }
+
+    .courseVideoMainDiv .courseVideoAndPricing .coursePriceInstruc .courseDetails{
+        font-size: 12px;
+    }
+
+    .courseVideoMainDiv .courseVideoAndPricing .coursePriceInstruc .startCourseButton{
+        font-size: 13px;
+    }
+
+    .courseVideoAndPricing .coursePriceInstruc .prices .oldPrice{
+        font-size: 10px;
+    }
+    .courseVideoAndPricing .coursePriceInstruc .prices .sellPrice{
+        font-size: 20px;
+    }
+  
+
+
+}
+
+@media (max-width: 400px){
+    .courseVideoMainDiv .courseVideoAndPricing .coursePriceInstruc .courseDetails{
+        font-size: 9px;
+    } 
+
+    .courseVideoMainDiv .videoPlayListsMainDiv{
+        width: 100%;
+        min-width: none;
+        padding-left: 10px;
+    }
+
+    .playlistsOfCourse .playlistDiv .nameAndTic .ticDiv{
+        font-size: 10px;
+    }
+
+  .toggleCoursePlaylist.active{
+        left: auto;
+        right: 10px;
+    }
+
+
+}
+
+
+@media (max-width: 350px) {
+    .playlistsOfCourse .playlistDiv .nameAndTic .descDiv .classesDesc{
+        width: 100px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.videoWrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.videoWrapper::before {
+  content: attr(data-serial); 
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  min-width: 150px;
+  width: 100%;
+  max-height: 100px;
+  height: 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.568);
+  backdrop-filter: blur(5px);
+  z-index: 2;
+  padding: 5px;
+  transition: opacity 0.5s ease;
+}
+
+.videoWrapper::before {
+  opacity: 1;
+  pointer-events: none;
+}
+
+
+.videoWrapper.playing::before{
+    transition: 0.3s;
+    opacity: 0;
+}
+
+
+.videoWrapper:hover::before,
+.videoWrapper[poster=""]::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

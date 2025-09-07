@@ -1,0 +1,271 @@
+.InstructorSingleCourseMainDiv{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+}
+
+
+.InstructorSingleCourseMainDiv .InstructorSingleCoursePart1{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 100px;
+}
+.InstructorSingleCourseMainDiv .InstructorSingleCoursePart1 .courseTitle{font-size: 20px; margin-top: 20px;}
+.InstructorSingleCourseMainDiv .InstructorSingleCoursePart1 .courseDesc
+{font-size: 15px; color: rgb(255, 246, 246); margin-top: 30px;
+    background-color: rgb(35, 35, 35);
+    padding: 10px 5px;
+    border-radius: 10px;
+}
+
+
+.InstructorSingleCoursePart1 .lectureDetialsFromServer{
+    height: auto;
+    width: 100%;
+    padding: 20px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.InstructorSingleCoursePart1 .lectureDetialsFromServer .lectureSameDet{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+
+}
+
+.InstructorSingleCoursePart1 .lectureDetialsFromServer .lectureSameDet .ttLect{
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.lectureDetialsFromServer .lectureSameDet .ttServeAns{
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    background-color: rgba(133, 46, 255, 0.81);
+    border-radius: 20px;
+    height: auto;
+    min-height: 10px;
+    font-size: 15px;
+    display: grid;
+    align-items: center;
+    padding-left: 20px;
+}
+
+
+
+.InstructorSingleCourseMainDiv .InstructorSingleCoursePart1 .partHeading{
+    background-color: rgb(243, 241, 255);
+    padding: 10px;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 700;
+}
+
+
+.InstructorSingleCourseMainDiv .InstructorSingleCoursePart1 .partHeading .headerButtons{
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgb(80, 16, 255);
+}
+
+
+.InstructorSingleCourseMainDiv .InstructorSingleCoursePart1 video{
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: rgb(10, 10, 10);
+}
+
+.InstructorSingleCourseMainDiv .InstructorSingleCoursePart1 .videoMainDiv {
+    position: relative;
+}
+
+
+.InstructorSingleCourseMainDiv .videoMainDiv .accc{
+    position: absolute;
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1/1;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(2, 2, 2, 0.313);
+    background: radial-gradient(circle, rgba(42, 195, 255, 0.559), transparent ,transparent);
+    transform: translate(-50%, -50%);
+}
+
+
+.InstructorSingleCourseMainDiv .LectureListCourse{
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    height: 90vh;
+    overflow-y: auto;
+    padding: 10px;
+    padding-bottom: 50px;
+
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.194);
+    position: sticky;
+    top: 0px;
+}
+.InstructorSingleCourseMainDiv .LectureListCourse::-webkit-scrollbar{
+    width: 2px;
+}
+
+.InstructorSingleCourseMainDiv .LectureListCourse .lecturesLength{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+
+.InstructorSingleCourseMainDiv .LectureListCourse .listCourse{
+    padding: 5px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed gray;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.InstructorSingleCourseMainDiv .LectureListCourse .listCourse:hover{
+    background-color: rgb(0, 5, 64);
+    color: white;
+}
+
+
+.LectureListCourse .listCourse.active{
+    background-color: rgb(0, 5, 64);
+    color: white;
+}
+
+
+.InstructorSingleCourseMainDiv .LectureListCourse .listCourse .lectures{
+    width: 100%;
+    width: 70%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.InstructorSingleCourseMainDiv .LectureListCourse .listCourse .lectures .lectureTitle{
+    position: relative;
+}
+
+.InstructorSingleCourseMainDiv .LectureListCourse .listCourse .lectures #freeLectures::before{
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    right: 0;
+    border-radius: 50%;
+    background-color: rgb(0, 145, 255);
+}
+
+
+
+.InstructorSingleCourseMainDiv .LectureListCourse .listCourse .lectureTT{
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+
+.InstructorSingleCourseMainDiv .LectureListCourse .deleteLectBtn{
+    background-color: red;
+    border-radius: 5px;
+
+}
+
+.InstructorSingleCourseMainDiv .LectureListCourse .editLectBtn{
+    background-color: rgb(0, 110, 255);
+    color: white;
+    border-radius: 5px;
+
+}
+
+
+
+
+
+
+/* Media-Query................... */
+
+
+@media (max-width: 900px){
+    .InstructorSingleCourseMainDiv{
+        flex-wrap: wrap;
+        max-width: 600px;
+        margin-top: 0;
+        padding-bottom: 100px;
+    }
+        
+        
+    .InstructorSingleCourseMainDiv .InstructorSingleCoursePart1{
+        width: 100%;
+    }
+
+
+
+    .InstructorSingleCourseMainDiv .LectureListCourse{
+        max-width: none;
+        width: 100%;
+    }
+
+    .InstructorSingleCourseMainDiv .LectureListCourse{
+        /* position: static; */
+
+    }
+
+    .InstructorSingleCoursePart1 .lectureDetialsFromServer{
+
+    }
+
+    .InstructorSingleCoursePart1 .lectureDetialsFromServer .lectureSameDet{
+        max-width: none;
+    }
+
+    .InstructorSingleCourseMainDiv .InstructorSingleCoursePart1 .partHeading{
+        position: fixed;
+        top: auto;
+        right: auto;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        min-height: 80px;
+        font-size: 13px;
+        height: 50px;
+        padding: auto 20px;
+        border-radius: 15px 15px 0px 0px;
+        background-color: rgba(220, 228, 255, 0.757);
+        backdrop-filter: blur(10px);
+    }
+
+}
+
+
+
+/* Media-Query................... */

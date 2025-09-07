@@ -1,16 +1,17 @@
-
 .hero-section {
-  /* background: linear-gradient(to right, #ebc725, #ff6334); */
-  background: linear-gradient(45deg, #21212c, #000000);
+  background:
+    linear-gradient(to right, #0303ff9f, #000000b2),   /* প্রথম: gradient পিছনে থাকবে */
+    url("/images/cover.webp") 50% 50% / cover no-repeat;  /* দ্বিতীয়: ছবি সামনে */
   
   color: white;
-  padding: 80px 0px;
+  padding: 80px 0;
   width: 100%;
   height: 700px;
   display: flex;
   justify-content: center;
   gap: 30px;
 }
+
 
 
 

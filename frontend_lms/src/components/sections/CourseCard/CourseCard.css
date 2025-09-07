@@ -1,14 +1,10 @@
 .CourseCardContainer{
     width: 80%;
     height: auto;
-    /* background-color: red; */
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
 
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 250px)); /* responsive কলাম */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 250px)); /* responsive কলাম */
     gap: 20px;
 
 
@@ -17,6 +13,7 @@
 
 .CourseCardContainer .CourseCard{
     /* width: 300px; */
+    /* max-height: 300px; */
     aspect-ratio: 6/8;
     background-color: white;
     display: flex;

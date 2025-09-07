@@ -1,0 +1,41 @@
+.LoadingController{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 2px;
+}
+
+.LoadingController img{
+    height: 20px;
+    aspect-ratio: 1/1;
+    filter: invert();
+}
+
+.LoadingController .loadingSpin{
+    animation: loadingStart 2s infinite linear;
+}
+
+@keyframes loadingStart {
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+.LoadingController .checkSpin{
+ 
+    animation: checkSpin 1s normal ease;
+}
+
+@keyframes checkSpin {
+    0%{
+        transform: scale(0.9);
+    }
+    50%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0.9);
+    }
+}
