@@ -1,6 +1,6 @@
  const express = require("express");
 const router = express.Router();
-const {AllCoureses, createCoureses, getCourseById, getCourseByInstructor, updateCourseById, approveCourse} =  require('../controllers/courseController.js');
+const {AllCoureses, createCoureses, getCourseById, getCourseByInstructor, updateCourseById, approveCourse, getCourseByStudent} =  require('../controllers/courseController.js');
 const roleAuth = require("../middlewares/roleAuth.js");
 const {auth, checkToken} = require("../middlewares/auth.js");
 const { upload } = require("../utils/cloudinary.js");
@@ -12,6 +12,9 @@ const { upload } = require("../utils/cloudinary.js");
 
 router.get("/instructor", auth, roleAuth(['instructor', 'admin']), getCourseByInstructor)
 router.get("/", AllCoureses)
+router.get("/user", auth, roleAuth(['student', 'admin']), getCourseByStudent);
+
+
 router.get("/:id", getCourseById)
 router.put("/update/:courseId", auth, roleAuth(['instructor', 'admin']),  upload.single("thumbnail"), updateCourseById)
 

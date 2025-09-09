@@ -6,6 +6,8 @@ const User = require("../model/UserModel");
 const Payment = require("../model/PaymentModel");
 const { getSignedVideoUrl, getSignedMp4Url, cloudinary } = require("../utils/cloudinary"); // your existing function
 const trush = require("../model/TrushModel");
+const axios = require("axios");
+
 
 // -------------------------
 // Create Lecture Video
@@ -241,54 +243,60 @@ const deleteTrushVideos = async (req, res) => {
 // -------------------------
 // Get Signed Video URL (HLS) for a Lecture
 // -------------------------
+
+// -------------------------
+// Get Signed Video URL (HLS) for a Lecture
+// -------------------------
 const getSignedVideoUrlUserLecture = async (req, res) => {
   try {
     const lectureId = req.params.id;
     const courseId = req.params.courseid;
-    const userId = req.user ? req.user.id : null; // optionalAuth থাকায় guest handle করবে
-    console.log(req.user);
-    
+    const userId = req.user ? req.user.id : null;
 
     const lecture = await Lecture.findById(lectureId).populate("course");
+    if (!lecture) return res.status(404).json({ message: "Lecture not found" });
 
-    
-    if (!lecture) {
-      return res.status(404).json({ message: "Lecture not found" });
-    }
-
-
-    if(req.user?.role==="instructor"){
+    // Instructor full access
+    if (req.user?.role === "instructor") {
       const signedUrl = getSignedVideoUrl(lecture.videoPublicId);
-      return res.status(200).json({ signedUrl, message:"You are in as a Instructor", fullAccess: true});
-
+      return res.status(200).json({ signedUrl, message: "You are in as a Instructor", fullAccess: true });
     }
 
-
-    // ✅ যদি ফ্রি লেকচার হয় → guest সহ সবার জন্য
-    if (lecture.isFree ) {
+    // Free lecture → guest access allowed
+    if (lecture.isFree) {
       const signedUrl = getSignedVideoUrl(lecture.videoPublicId);
-      return res.status(200).json({ signedUrl});
-
+      return res.status(200).json({ signedUrl });
     }
 
-    // ✅ পেইড লেকচারের জন্য পেমেন্ট চেক
-    if (!userId) {
-      return res.status(401).json({ message: "Login required to view this lecture" });
-    }
+    // Paid lecture → check payment
+    if (!userId) return res.status(401).json({ message: "Login required to view this lecture" });
 
     const hasPaid = await Payment.exists({ student: userId, course: courseId });
+    if (!hasPaid) return res.status(403).json({ message: "This lecture is locked. Purchase the course to view." });
 
-    if (!hasPaid) {
-      return res.status(403).json({ message: "This lecture is locked. Purchase the course to view." });
+    // Paid & authorized → signed URL
+    const signedUrl = getSignedVideoUrl(lecture.videoPublicId);
+
+    // ✅ Proxy HLS request using backend
+    // Instead of sending the signed URL, we fetch the playlist content and send it through our server
+    if (req.query.proxy === "true") {
+      // Proxying main .m3u8 playlist
+      const playlistResp = await axios.get(signedUrl);
+      res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
+      return res.send(playlistResp.data);
     }
 
-    const signedUrl = getSignedVideoUrl(lecture.videoPublicId);
+    // Normal response (same as before)
     res.json({ signedUrl });
   } catch (error) {
     console.error("Error generating signed URL:", error);
     res.status(500).json({ message: "Error generating signed URL", error: error.message });
   }
 };
+
+
+
+
 
 
 

@@ -196,43 +196,46 @@ const getUserProfile = async(req, res)=>{
 }
 
 
-
-const checkCourseAccess = async(req, res)=>{
+const checkCourseAccess = async (req, res) => {
   try {
-    const {courseId} = req.params
-    const user = req.user
-    console.log("User Data:"+ user);
-    
-    
-    
-    const AccessVerify = await User.findById(user.id)
-    console.log(AccessVerify);
-    
+    const { courseId } = req.params;
+    const user = req.user;
 
-    if(AccessVerify.enrolledCourses.length === 0){
-      return res.status(400).json({
-        message:"NO Course Enrolled Yet",
-      })
+    if (!user) {
+      return res.status(401).json({ message: "User not logged in" });
     }
 
-    if(!AccessVerify.enrolledCourses.some(course => course.courseId === courseId)){
-        return res.status(400).json({
-          message:"Not Matched Courses",
-      })
+    const AccessVerify = await User.findById(user.id);
+
+    if (!AccessVerify || !AccessVerify.enrolledCourses || AccessVerify.enrolledCourses.length === 0) {
+      return res.status(403).json({ message: "No courses enrolled yet" });
     }
+
+    const hasAccess = AccessVerify.enrolledCourses.some(
+      (course) => course.courseId.toString() === courseId
+    );
+
+    if (!hasAccess) {
+      return res.status(403).json({ message: "You do not have access to this course" });
+    }
+
+    console.log( "laqjxdlknhqsc sxdmn dlk .................",hasAccess);
+    
 
     res.status(200).json({
-      message:"Verify Success",
-      verify: true
-    })
-
+      message: "Access verified",
+      verify: true,
+    });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
-      message:"User Have No Access To This Course",
-      error: error.message
-    })
+      message: "Error verifying course access",
+      error: error.message,
+    });
   }
-}
+};
+
+
 
 
 

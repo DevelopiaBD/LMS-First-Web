@@ -185,6 +185,49 @@ const getCourseByInstructor = async (req, res) => {
   }
 };
 
+
+
+// -------------------------
+// Get courses by student....
+// -------------------------
+
+const getCourseByStudent = async (req, res) => {
+  try {
+    // Student verify
+    const existingStudent = await User.findById(req.user.id).populate({
+      path: 'enrolledCourses.courseId', // populate courseId
+      // কোনো select না দিলে সব ফিল্ড আসবে
+    });
+
+    if (!existingStudent || existingStudent.role !== 'student') {
+      return res.status(401).json({
+        message: "No Student Found!!",
+        success: false
+      });
+    }
+
+    // Response: completed + populated course object
+    const enrolledCoursesWithFullDetails = existingStudent.enrolledCourses.map((enrolled) => ({
+      completed: enrolled.completed,
+      course: enrolled.courseId
+    }));
+
+    res.status(200).json({
+      message: "Student's Enrolled Courses (Full Details)",
+      count: enrolledCoursesWithFullDetails.length,
+      enrolledCourses: enrolledCoursesWithFullDetails
+    });
+
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      message: "Error fetching student's courses",
+      error: error.message
+    });
+  }
+};
+
+
 // -------------------------
 // Approve course
 // -------------------------
@@ -232,6 +275,8 @@ module.exports = {
   createCoureses,
   getCourseById,
   getCourseByInstructor,
+  getCourseByStudent,
+
   updateCourseById,
   approveCourse,
 };

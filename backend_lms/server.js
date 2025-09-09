@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 
+const paymentRoutes = require("./routes/paymentRoutes");
 const userRoutes = require("./routes/userRoutes")
 const courseRoutes = require("./routes/courseRoutes")
 const lectureRoutes = require("./routes/lectureRoutes")
@@ -67,6 +68,11 @@ mongoose.connect(process.env.MONGO_URI)
 app.use("/api/auth", userRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/lectures", lectureRoutes);
+app.use("/api/payments", paymentRoutes);
+
+
+
+
 // app.use("/api/upload", uploadRoutes);
 
 app.listen(process.env.PORT, () => {
