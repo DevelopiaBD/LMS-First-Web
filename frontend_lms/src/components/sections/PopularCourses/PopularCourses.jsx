@@ -3,10 +3,6 @@ import React from "react";
 import "./PopularCourses.css";
 import { useApiContext } from "../../../../Utils/ApiContext";
 
-import img6 from "/images/thumb20.jpg"; 
-import img7 from "/images/thumb13.jpg";
-import img8 from "/images/thumb19.jpg";
-import img9 from "/images/thumb18.jpg";
 
 
 

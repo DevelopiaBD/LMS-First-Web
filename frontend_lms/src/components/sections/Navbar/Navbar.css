@@ -8,8 +8,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 999;
+  animation: showNavbar 2s normal forwards;
+  opacity: 0;
   /* box-shadow: 1px 1px 2px 6px rgba(0, 174, 255, 0.527); */
+}
+
+@keyframes showNavbar {
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Flex container */
@@ -67,11 +75,54 @@
   object-fit: cover;
   border: 2px solid white;
   margin-left: 10px;
+  position: relative;
+  cursor: pointer;
 }
 
 .nav-menu .hiddenOnProfileLogs{
-  opacity: ;
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  background-color: white;
+  padding: 5px;
+  min-height: 100px;
+  width: 50%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 1.5px 6px 0 rgba(0,0,0,0.15);
+  border-radius: 10px;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
 }
+
+.nav-menu .hiddenOnProfileLogs .profileUserName{
+  margin-bottom: 10px;
+  color: rgb(255, 0, 111);
+  text-align: center;
+  background-color: rgb(237, 233, 255);
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+}
+
+.nav-menu .hiddenOnProfileLogs .profileUserName .emailUser{
+ color: rgb(17, 16, 16);
+ user-select: text;
+}
+
+.hiddenOnProfileLogs.active{
+  transform: scale(1);
+  z-index: 100;
+}
+
+.nav-menu .hiddenOnProfileLogs a{
+  width: 100%;
+  text-align: center;
+}
+
+
 
 
 
@@ -140,6 +191,14 @@
   transform: rotate(-45deg);
 }
 
+
+
+
+
+
+
+
+
 /* Responsive */
 @media (max-width: 1200px) {
   .nav-toggle {
@@ -175,4 +234,36 @@
   .btn-signup{
     color: black;
   }
+
+
+
+
+  
+.nav-menu .profileImage{
+  display: none;
+}
+
+.nav-menu .hiddenOnProfileLogs{
+  position: static;
+  background-color: rgba(124, 104, 104, 0);
+  padding: 5px;
+  min-height: none;
+  width: auto;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+ 
+
+.nav-menu .hiddenOnProfileLogs .profileUserName{
+  display: none;
+}
+
+
+
+
+
+
 }

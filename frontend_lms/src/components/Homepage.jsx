@@ -26,6 +26,12 @@ const Homepage = () => {
       </div>
 
       <div className="MainBlogsAndOthersContainer">
+    <section className="popular-section">
+      <div className="popular-container">
+        <h2 className="popular-title">Popular Courses</h2>
+        <PopularCourses />
+      </div>
+    </section>
         
       <TopSections/>
       <div className="eduImageSliderMainDiv">
@@ -33,12 +39,6 @@ const Homepage = () => {
       </div>
       {/* <CourseCard/> */}
 
-    <section className="popular-section">
-      <div className="popular-container">
-        <h2 className="popular-title">Popular Courses</h2>
-        <PopularCourses />
-      </div>
-    </section>
 
 
       <FeaturesBlock />

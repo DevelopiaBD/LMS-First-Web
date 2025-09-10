@@ -338,6 +338,7 @@ img{display:block; max-width:100%;}
 .courseLandingRoot.lgMode{
     background-color: var(--bg);
     background-color: rgb(3, 5, 21);
+    /* background: linear-gradient(135deg, rgb(18, 18, 18), rgb(13, 6, 107), rgb(3, 5, 58)); */
 }
 
 .courseLandingRoot .noticeTop{

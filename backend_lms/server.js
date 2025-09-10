@@ -20,7 +20,7 @@ const lectureRoutes = require("./routes/lectureRoutes")
 
 
 const app = express();
-
+const PORT = process.env.PORT || 3200
 
 // Middlewares
 app.use(express.json());
@@ -65,6 +65,8 @@ mongoose.connect(process.env.MONGO_URI)
 // Preflight OPTIONS request handle
 // app.options("*", cors(corsOptions));
 
+app.use("/", (req, res)=> res.send("LMS API IS ON.........."))
+
 app.use("/api/auth", userRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/lectures", lectureRoutes);
@@ -75,8 +77,14 @@ app.use("/api/payments", paymentRoutes);
 
 // app.use("/api/upload", uploadRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log(`🚀 Server running on port http://localhost:${process.env.PORT}`);
+app.listen(PORT , () => {
+  try {
+    console.log(`🚀 Server running on port http://localhost:${PORT}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1)
+    
+  }
 });
 
 

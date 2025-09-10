@@ -7,6 +7,12 @@ const Navbar = () => {
   const {user, LogOutUser} = useApiContext()
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  const handleProfile = ()=>{
+    setProfileOpen(!profileOpen)
+  }
+
   return (
     <nav className="navbar">
       <div className="nav-container">
@@ -27,12 +33,17 @@ const Navbar = () => {
           <a href="/contact" className="nav-item">Contact</a>
           <a href="/course/create" className="nav-item">Create</a>
           {
-          !!user?
+          user?
           <>
-          <img src={user?.profileImg} className="profileImage" />
-          <div className="hiddenOnProfileLogs">
-            <a onClick={()=>{LogOutUser()}} className="nav-item btn-signup">Logout</a>
+          <img src={user?.profileImg} className="profileImage" onClick={handleProfile}/>
+          <div className={profileOpen?"hiddenOnProfileLogs active":"hiddenOnProfileLogs"}>
+            <div aria-disabled="true" className="profileUserName">
+              <p className="userName">{user?.name}</p>
+              <p className="emailUser">{user?.email}</p>
+            </div>
+    
             <a href="/dashboard" className="nav-item btn-login">Dashboard</a>
+            <a onClick={()=>{LogOutUser()}} className="nav-item btn-signup">Logout</a>
           </div>
           </>
           :
