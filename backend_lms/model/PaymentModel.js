@@ -6,7 +6,7 @@ const paymentSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   paymentMethod: { type: String, enum: ['bkash', 'nagad', 'rocket', 'card', 'cash'], required: true },
   transactionId: { type: String, required: true, unique: true },
-  paidAt: { type: Date, default: Date.now }
+  paidAt: {  type: Date, default: Date.now  }
 });
 
 const Payment = mongoose.model('Payment', paymentSchema);

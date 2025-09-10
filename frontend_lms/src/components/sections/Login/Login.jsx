@@ -62,7 +62,7 @@ const Login = () => {
               marginTop: "1rem",
             }}
           >
-            <p style={{ color: "var(--hyperTheme)" }}>No Account?</p>
+            <p className="noAccountP" style={{ color: "var(--hyperTheme)" }}>No Account?</p>
             <NavLink to="/registration">Register now</NavLink>
           </div>
         </form>

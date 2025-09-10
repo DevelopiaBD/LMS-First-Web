@@ -78,3 +78,100 @@ app.use("/api/payments", paymentRoutes);
 app.listen(process.env.PORT, () => {
   console.log(`🚀 Server running on port http://localhost:${process.env.PORT}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const dotenv = require("dotenv");
+// dotenv.config();
+
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const cors = require("cors");
+// const morgan = require("morgan");
+// const cookieParser = require("cookie-parser");
+
+// const paymentRoutes = require("./routes/paymentRoutes");
+// const userRoutes = require("./routes/userRoutes");
+// const courseRoutes = require("./routes/courseRoutes");
+// const lectureRoutes = require("./routes/lectureRoutes");
+
+// const app = express();
+
+// // -------------------------
+// // Middlewares
+// // -------------------------
+
+// // JSON parser (works globally for APIs)
+// app.use(express.json());
+
+// // Logger
+// app.use(morgan("dev"));
+
+// // Cookies
+// app.use(cookieParser());
+
+// // ❌ Remove global urlencoded for large uploads
+// // Small forms: add per route if needed
+
+// // -------------------------
+// // Error handlers for uncaught exceptions & unhandled promise rejections
+// // -------------------------
+// process.on("uncaughtException", (err) => {
+//   console.error("Uncaught Exception:", err.message);
+// });
+
+// process.on("unhandledRejection", (reason, promise) => {
+//   console.error("Unhandled Rejection at:", promise, "reason:", reason);
+// });
+
+// // -------------------------
+// // CORS Config
+// // -------------------------
+// const corsOptions = {
+//   origin: ["http://localhost:5173", "http://localhost:5174"],
+//   credentials: true,
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
+// app.use(cors(corsOptions));
+
+// // -------------------------
+// // MongoDB Connect
+// // -------------------------
+// mongoose.connect(process.env.MONGO_URI)
+//   .then(() => console.log("✅ MongoDB Connected"))
+//   .catch(err => console.error(err));
+
+// // -------------------------
+// // Routes
+// // -------------------------
+
+// // Small HTML form submissions (urlencoded) only on specific routes
+// // Example: login route
+// // app.use("/api/auth/login", express.urlencoded({ extended: true }));
+
+// // File uploads (like lectures) → handled entirely by multer
+// app.use("/api/auth", userRoutes);
+// app.use("/api/courses", courseRoutes);
+// app.use("/api/lectures", lectureRoutes);
+// app.use("/api/payments", paymentRoutes);
+
+// // -------------------------
+// // Start server
+// // -------------------------
+// app.listen(process.env.PORT, () => {
+//   console.log(`🚀 Server running on port http://localhost:${process.env.PORT}`);
+// });
+

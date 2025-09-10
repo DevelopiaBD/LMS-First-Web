@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Course = require("../model/CourseModel");
 const dotenv = require("dotenv");
+const { cloudinary } = require("../utils/cloudinary");
 dotenv.config();
 console.log("JWT_SECRET:", process.env.JWT_SECRET);
 console.log("JWT_REFRESH_SECRET:", process.env.JWT_REFRESH_SECRET);
@@ -46,6 +47,7 @@ const userRegistration = async (req, res) => {
         name: newUser.name,
         email: newUser.email,
         phone: newUser.phone, // Include phone if needed
+        profileImg:""
         // Don't return password in response
       }
     });
@@ -55,6 +57,66 @@ const userRegistration = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
+
+
+
+
+
+// -------------------------
+// Update User Profile
+// -------------------------
+const updateUserProfile = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    // Find user
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Update fields
+    const { name, email, phone, password } = req.body;
+    if (name) user.name = name;
+    if (email) user.email = email;
+    if (phone) user.phone = phone;
+    // if (password) user.password = password; // hash needed in model
+
+    // Profile image handling
+    let profileImageUrl = user.profileImg;       // আগের image
+    let profileImagePublicId = user.profileImageId || "";
+
+    if (req.file) {
+      // পুরোনো profile image থাকলে delete
+      if (profileImagePublicId) {
+        await cloudinary.uploader.destroy(profileImagePublicId, { resource_type: "image" });
+      }
+
+      // নতুন image upload
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "profile_images",
+        public_id: `${userId}_${Date.now()}`,
+        overwrite: true,
+        resource_type: "image",
+      });
+
+      profileImageUrl = result.secure_url;
+      profileImagePublicId = result.public_id;
+
+      user.profileImg = profileImageUrl;
+      user.profileImageId = profileImagePublicId;
+    }
+
+    await user.save();
+
+    // Password বাদ দিয়ে response
+    const { password: pwd, ...userData } = user._doc;
+
+    res.status(200).json({ message: "Profile updated", user: userData });
+  } catch (err) {
+    console.error("Profile update error:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};
+
 
 
 
@@ -181,9 +243,11 @@ const refreshToken = (req, res) => {
 const getUserProfile = async(req, res)=>{
   try {
     console.log(req.user);
+
+    const userData = await User.findById(req.user.id).select("-password")
     
     res.status(200).json({
-      user: req.user,
+      user: userData,
       message:"User Data Fetched Successfully"
     })
   } catch (error) {
@@ -260,6 +324,8 @@ const logoutUser = (req, res) => {
 
 module.exports = {
   userRegistration,
+  updateUserProfile,
+  
   userLogin,
   refreshToken,
   getUserProfile,

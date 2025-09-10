@@ -29,8 +29,11 @@ const Navbar = () => {
           {
           !!user?
           <>
-          <a onClick={()=>{LogOutUser()}} className="nav-item btn-signup">Logout</a>
-          <a href="/dashboard" className="nav-item btn-login">Dashboard</a>
+          <img src={user?.profileImg} className="profileImage" />
+          <div className="hiddenOnProfileLogs">
+            <a onClick={()=>{LogOutUser()}} className="nav-item btn-signup">Logout</a>
+            <a href="/dashboard" className="nav-item btn-login">Dashboard</a>
+          </div>
           </>
           :
           <>

@@ -15,6 +15,8 @@ import Dashboard from './components/ADMIN/Dashboard/Dashboard'
 import CourseControlPage from './components/ADMIN/CourseControlPage/CourseControlPage'
 import InstructorSingleCourse from './components/ADMIN/InstructorSingleCourse/InstructorSingleCourse'
 import CourseSellingView from './components/sections/CourseSellingView/CourseSellingView'
+import PaymentForm from './components/PaymentForm/PaymentForm'
+import ProfilePage from './components/ADMIN/ProfilePage'
 
 function App() {
 
@@ -39,6 +41,10 @@ function App() {
         }
         <Route path='/course/selling/:id' element={<CourseSellingView/>}/>
         <Route path='/course/:id' element={<SingleCoursePage/>}/>
+        
+        <Route path='course/purchase/:id' element={<PaymentForm/>}/>
+
+
         <Route path='/*' element={<Homepage/>}/>
 
 
@@ -48,6 +54,7 @@ function App() {
           <Route path='courses' element={<AllCoursesEnrolled/>}/>
           <Route path='course/:id' element={<InstructorSingleCourse/>}/>
           <Route path='courses/controll' element={<CourseControlPage/>}/>
+          <Route path='profile' element={<ProfilePage/>}/>
           <Route path='*'/>
 
 

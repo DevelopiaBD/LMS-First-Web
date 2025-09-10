@@ -105,7 +105,7 @@
         position: fixed;
         top: 60px;
         left: 0;
-        z-index: 1000;
+        z-index: 990;
         padding: 10px 20px;
     }
 

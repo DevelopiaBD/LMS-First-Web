@@ -1,48 +1,75 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import "./SingleCoursePage.css"
+import "./SingleCoursePage.css";
+
 import VideoPlayAndDetails from '../VideoPlayAndDetails/VideoPlayAndDetails';
-
 import Footer from '../Footer/Footer';
-import { useApiContext } from '../../../../Utils/ApiContext';
-import { useEffect } from 'react';
 import PopularCourses from '../PopularCourses/PopularCourses';
-
-
-
-
-
-
-
-
+import { useApiContext } from '../../../../Utils/ApiContext';
+import LoadingAnim from '../../LoadingAnim';
+import ErrorIndicates from '../../ErrorIndicates';
 
 const SingleCoursePage = () => {
+  const { 
+    courseData,
+    singleCourseData, 
+    GetSingleCourse, 
 
-  const {courseData, singleCourseData, GetSingleCourse} = useApiContext();
+    ApiLoading,
+    ApiError
+  } = useApiContext();
+  const { id } = useParams();
+
+  // Fetch course data
+  useEffect(() => {
+    GetSingleCourse(id);
+  }, [id]);
+
+  console.log("All Courses:", courseData);
+  console.log("Single Course:", singleCourseData);
 
 
-  const {id} = useParams(); // Assuming you are using react-router-dom to get the course ID from the URL
-  console.log(courseData); // This will log the course ID to the console for debugging purposes
+  let ab = false;
+  // setTimeout(() => {
+  //   ab= true;
+  // }, 1000);
   
-  useEffect(()=>{
-    GetSingleCourse(id)
-    
-  },[])
-  
-  console.log(singleCourseData);
+  if(ApiLoading){
+    return <LoadingAnim/>
+  }
+
+
+
+  if(singleCourseData.length===0){
+    // return <LoadingAnim/>
+    return (
+      <div className="mainErrorshow" style={{height:"100vh", display:"flex", alignItems:"center"}}>
+        <h1>No Course Found Yet!!!!</h1>
+      </div>
+    )
+  }
+
+
+
+  if(ApiError){
+    return <ErrorIndicates/>
+  }
+
+
 
   return (
-    <div className='container SingleCoursePageContainer'>
-             {/*Course video and pricing */}
+    <div className="single-course-page-wrapper">
+      
+      {/* Video + details section */}
+      <section className="single-course-video-section">
+        <VideoPlayAndDetails />
+      </section>
 
-
-            <VideoPlayAndDetails />
-
-
-        <div className="courseSectionTwo" style={{marginTop:"100px"}}>{/*Course Description */}
-            <h2 style={{marginBottom:"20px"}}>Course Description</h2>
-            <p>
-               এই ডিজিটাল মার্কেটিং কোর্সে আপনি শিখবেন কীভাবে অনলাইনে ব্র্যান্ড প্রচার,  
+      {/* Course Description */}
+      <section className="single-course-description-section">
+        <h2 className="single-course-description-title">Course Description</h2>
+        <p className="single-course-description-text">
+          এই ডিজিটাল মার্কেটিং কোর্সে আপনি শিখবেন কীভাবে অনলাইনে ব্র্যান্ড প্রচার,  
           গ্রাহক আকর্ষণ এবং বিক্রয় বৃদ্ধি করা যায়।  
 
           কোর্সটিতে অন্তর্ভুক্ত রয়েছে সোশ্যাল মিডিয়া মার্কেটিং,  
@@ -53,26 +80,22 @@ const SingleCoursePage = () => {
           ব্যবসা সফলভাবে পরিচালনা করার জন্য প্রয়োজনীয় দক্ষতা এবং কৌশল শিখাবে।  
 
           যেকোনো শিক্ষার্থী, উদ্যোক্তা, বা ফ্রিল্যান্সার এই কোর্স থেকে উপকৃত হবেন।  
+        </p>
+      </section>
 
-            </p>
+      {/* Related Courses */}
+      <section className="single-course-related-section">
+        <h1 className="single-course-related-title">Related Courses</h1>
+        <p className="single-course-related-subtitle">
+          Explore more courses related to this one
+        </p>
+        <PopularCourses />
+      </section>
 
-
-          <div className='links'></div>
-        </div>
-
-
-
-
-        <div className="relatedCourse">
-            <h1>Related Courses</h1>
-            <p style={{marginBottom:"30px"}}>Explore more courses related to this one</p>
-            <PopularCourses/>
-        </div>
-
-        <Footer/>
+      {/* Footer */}
+      <Footer />
     </div>
+  );
+};
 
-  )
-}
-
-export default SingleCoursePage
+export default SingleCoursePage;

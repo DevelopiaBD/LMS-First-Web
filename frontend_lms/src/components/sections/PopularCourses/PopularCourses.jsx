@@ -20,7 +20,7 @@ const PopularCourses = () => {
     //     <h2 className="popular-title">Popular Courses</h2>
         <div className="course-grid">
           {
-            
+            // selling
           ApprovedCourseData.length===0?
           <h2>No Courses Active</h2>
           :

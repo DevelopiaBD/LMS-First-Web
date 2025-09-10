@@ -43,6 +43,15 @@
 }
 .coursesCard .statusDiv .pricing{
    font-size: 20px;
+   
+}
+.coursesCard .statusDiv .title{
+   font-size: 13px;
+   width: 70%;
+   overflow:hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+
 }
 
 

@@ -361,7 +361,7 @@ img{display:block; max-width:100%;}
     max-width: 800px;
     color: var(--text); /* Switched to a variable */
     z-index: 900;
-    margin-top: -50px;
+    /* margin-top: -50px; */
   transition: 0.5s;
 
 }
@@ -504,8 +504,6 @@ img{display:block; max-width:100%;}
 .instLinks a{color:var(--text); text-decoration:underline dotted}
 
 /* Toggle button (mobile floating) */
-.toggleCoursePlaylist{display:none; position:relative; padding:10px 12px; color:white; border-radius:10px; cursor:pointer; z-index:5; transition:.3s background; background: var(--brand)}
-.toggleCoursePlaylist.active{background:#30384c}
 
 
 
@@ -516,7 +514,7 @@ img{display:block; max-width:100%;}
   .heroRight{display:none}
   .gridTwo{grid-template-columns:1fr}
   .stickyCard{position:relative; top:0}
-  .toggleCoursePlaylist{display:inline-flex}
+
 }
 
 

@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { useContext } from 'react';
 import { createContext } from 'react'
 import { useApiContext } from './ApiContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import reducerDashboardFN from './reducerDashboardFN';
 
 
 const DBDContext = createContext();
+
+let initialValue = {
+    isLoading: false,
+    isError: false,
+}
 
 const DashBoardContextProvider = ({children}) => {
    const {API_BASE, user, haveToken, Authorization} = useApiContext();
@@ -14,6 +20,8 @@ const DashBoardContextProvider = ({children}) => {
    const [token, setToken] = useState(null)
    const [enrolledVerified, setEnrolledVerified] = useState(false)
    const [instructorCourses, setInstructorCourses] = useState([]);
+
+   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
    const [loadingFormLecture, setLoadingFormLecture] = useState(false)
    const [errorSubmit, setErrorSubmit] = useState(false)
@@ -29,6 +37,17 @@ const DashBoardContextProvider = ({children}) => {
         }
 
     }, [user]);
+
+
+// Reducer..............
+
+    const [state, dispatch] = useReducer(reducerDashboardFN, initialValue);
+
+// Reducer..............
+
+
+
+
 
 
 
@@ -258,6 +277,34 @@ const deleteInstLect = async(id)=>{
 
 
 
+    const getIStudentEnrolledCourses = async()=>{
+
+        const tt = localStorage.getItem("authToken");
+        if(!tt) return console.log("NO Tokem For Instructor");
+        
+        try {
+            const res = await fetch(`${API_BASE}/courses/user`, {
+                method:"GET",
+                headers:{
+                    "Authorization":`Bearer ${tt}`
+                }
+            })
+
+            if(!res.ok) return console.log(res);
+            
+
+            const data = await res.json();
+            console.log(data);
+            setEnrolledCourses(data.enrolledCourses)
+            
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+    }
+
+
+
     const getInstructorCourses = async()=>{
 
         const tt = localStorage.getItem("authToken");
@@ -302,9 +349,10 @@ const deleteInstLect = async(id)=>{
     return ( 
     <DBDContext.Provider value={
         {
-            enrolledVerified, instructorCourses, loadingFormLecture,
+            enrolledVerified, instructorCourses, loadingFormLecture, enrolledCourses,
 
-            VerifyCourseEnroll, createCourse, getInstructorCourses,
+            VerifyCourseEnroll, createCourse, getInstructorCourses, getIStudentEnrolledCourses,
+
             getInstructorLectures,
             createLecture,
             deleteInstLect,

@@ -1,0 +1,170 @@
+/* Registration.css */
+
+:root {
+  --primaryColor: #4f46e5; /* Indigo */
+  --secondaryColor: #6b7280; /* Gray */
+  --bgColor: #f9fafb;
+  --textColor: #111827;
+  --inputBg: #ffffff;
+  --inputBorder: #d1d5db;
+  --btnBg: #4f46e5;
+  --btnHover: #4338ca;
+  --btnText: #ffffff;
+}
+
+
+
+.DashboradProfileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.formDivRegistration {
+  background-color: var(--inputBg);
+  padding: 30px 25px 40px 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.formDivRegistration h2 {
+  margin-bottom: 25px;
+  color: var(--textColor);
+}
+
+.profileImageWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px dashed var(--secondaryColor);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profileImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileImageWrapper .cameraIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--secondaryColor);
+  width: 100%;
+  height: 100%;
+}
+
+.profileImageWrapper:hover .hoverOverlay {
+  opacity: 1;
+}
+
+.hoverOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid var(--inputBorder);
+  background-color: var(--inputBg);
+  font-size: 1rem;
+  color: var(--textColor);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--primaryColor);
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.2);
+}
+
+.submitReg {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--btnBg);
+  color: var(--btnText);
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submitReg:hover {
+  background-color: var(--btnHover);
+}
+
+.linkToPrev {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--secondaryColor);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.linkToPrev a {
+  color: var(--primaryColor);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.linkToPrev a:hover {
+  color: var(--btnHover);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .formDivRegistration {
+    padding: 25px 20px 30px 20px;
+  }
+
+  .profileImageWrapper {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"] {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  .submitReg {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}

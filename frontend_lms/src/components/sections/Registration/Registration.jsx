@@ -80,7 +80,7 @@ const Registration = () => {
             className="linkToPrev"
             style={{ display: "flex", justifyContent: "center", gap: "15px" }}
           >
-            <p style={{ color: "var(--hyperTheme)" }}>Already Registered?</p>
+            <p className="noAccountP" style={{ color: "var(--hyperTheme)" }}>Already Registered?</p>
             <NavLink to="/login">Login now</NavLink>
           </div>
         </form>

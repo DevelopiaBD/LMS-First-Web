@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true},
+  profileImg: { type: String },
+  profileImageId:{ type: String },
   password: { type: String, required: true },
   role: { type: String, enum: ['student', 'instructor', 'admin'], default: 'student' },
   enrolledCourses: [

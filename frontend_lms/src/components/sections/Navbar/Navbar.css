@@ -59,6 +59,22 @@
   border: 1.5px solid white;
 }
 
+
+.nav-menu .profileImage{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  margin-left: 10px;
+}
+
+.nav-menu .hiddenOnProfileLogs{
+  opacity: ;
+}
+
+
+
 .btn-signup {
   background-color: white;
   color: #4f46e5;
@@ -125,7 +141,7 @@
 }
 
 /* Responsive */
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .nav-toggle {
     display: block;
   }

@@ -4,10 +4,22 @@ import Calendar from '../CalenderView/CalenderView';
 import CourseFormPage from '../../CourseFormPage/CourseFormPage ';
 import ViewAuthorCourses from '../../sections/ViewAuthorCourses/ViewAuthorCourses';
 import { UseDashBoardContextProvider } from '../../../../Utils/DashBoardContext';
+import { useApiContext } from '../../../../Utils/ApiContext';
+import LoadingAnim from '../../LoadingAnim';
+import ErrorIndicates from '../../ErrorIndicates';
 
 const Dashboard = () => {
   
+  const {ApiLoading , ApiError} = useApiContext()
+  
 
+  if(ApiLoading){
+    return <LoadingAnim/>
+  }
+
+  if(ApiError){
+    return <ErrorIndicates/>
+  }
 
   return (
     <div className='DashboardMainDiv'>

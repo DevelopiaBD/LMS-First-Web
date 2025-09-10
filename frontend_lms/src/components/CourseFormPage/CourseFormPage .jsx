@@ -137,7 +137,7 @@ const CourseFormPage = () => {
       }
 
 
-      if(!formData.thumbnail){
+      if(!formData.thumbnail && !selectedCourse?.thumbnail){
         alert("Please Select A thumbline........")
         return 
       }
@@ -368,7 +368,7 @@ const CourseFormPage = () => {
               ""
             }
             </div>
-            <label for="thimbline">Thumbnail</label>
+            <label htmlFor="thimbline">Thumbnail</label>
           {/* )} */}
       </div>
     </div>

@@ -259,6 +259,8 @@ const CourseSellingView = () => {
         </div>
       </header>
 
+
+
 {/* mode==="light"?"lgMode":""   add this here wihtout ``::      <main className="container mainSectionContainer">  */}
       {/* ---------------- Main Content ---------------- */}
       <main className={mode==="light"?"lgMode container mainSectionContainer":"container mainSectionContainer "}> {/* gridTwo */}
@@ -272,7 +274,7 @@ const CourseSellingView = () => {
             >
               <video
                 ref={videoRef}
-                className="VideoSrc"
+                className="VideoSrc videoSource"
                 poster={course?.thumbnail}
                 controls
                 preload="none"
@@ -376,10 +378,10 @@ const CourseSellingView = () => {
             <ul className="bulletGrid">
 
               {
-                learningTags?.map((tags=>{
+                learningTags?.map((tags,i)=>{
 
-                  return <li>{tags}</li>
-                }))
+                  return <li key={i}>{tags}</li>
+                })
               }
             </ul>
           </section>

@@ -1,6 +1,7 @@
 const express = require("express");
-const { userRegistration, userLogin, checkCourseAccess, refreshToken, getUserProfile, logoutUser } = require("../controllers/userController");
-const {auth} = require("../middlewares/auth")
+const { userRegistration, userLogin, checkCourseAccess, refreshToken, getUserProfile, logoutUser, updateUserProfile } = require("../controllers/userController");
+const {auth} = require("../middlewares/auth");
+const { upload } = require("../utils/cloudinary");
 // const roleAuth = require("../middlewares/roleAuth")
 const router = express.Router();
 
@@ -11,6 +12,12 @@ router.get("/user/profile", auth, getUserProfile);
 // router.get("/instructor")
 
 router.get("/:courseId/verify/", auth, checkCourseAccess)
+
+
+router.put("/profile/update", auth, upload.single("profileImg"), updateUserProfile)
+
+
+
 
 
 

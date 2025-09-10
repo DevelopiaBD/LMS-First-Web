@@ -120,7 +120,7 @@
     flex-direction: column;
     gap: 20px;
     height: auto;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 .DashboardMainDiv .dash1divs.dash1_2 .instructorcourseTT{
     color: rgb(72, 72, 72);

@@ -3,10 +3,12 @@ import "./AdminLayout.css"
 import { NavLink, Outlet } from 'react-router-dom';
 
 import play from "/svgs/play.svg"
+import { useApiContext } from '../../../../Utils/ApiContext';
 
 const AdminLayout = () => {
 
   const [toggle, setToggle] = useState(false);
+  const {user} = useApiContext()
 
 
 
@@ -16,7 +18,8 @@ const AdminLayout = () => {
 
         <div className={toggle?"AdminNavbarDiv active":"AdminNavbarDiv"}>
             <div className="navTitleAndLogo">
-                <h1 className='navLogo'>Courses</h1>
+                <h2 className='navLogo'>{user?.role.toUpperCase()}</h2>
+                {/* <h1>Panel</h1> */}
             </div>
 
             <div className="navLinksMainDiv">
@@ -25,7 +28,7 @@ const AdminLayout = () => {
                 <NavLink className="navLinks" to="students" onClick={()=>setToggle(false)}>Student</NavLink>
                 <NavLink className="navLinks" to="admin" onClick={()=>setToggle(false)}>Admin</NavLink>
                 <NavLink className="navLinks" to="courses/controll" onClick={()=>setToggle(false)}>Course</NavLink>
-                <NavLink className="navLinks" to="students" onClick={()=>setToggle(false)}>Student</NavLink>
+                <NavLink className="navLinks" to="profile" onClick={()=>setToggle(false)}>Profile</NavLink>
             </div>
 
             <img 
